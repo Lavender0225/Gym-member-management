@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang ="zh-CN" >
+    <head>
+        <title>login</title>
+        <script src="../static/js/jQuery.js"></script>
+    </head>
+    <body>
+        <div id = "test_div" data-type ={{type}}>
+
+        </div>
+       <script>
+           var mytype = $("#test_div").data("type")
+           if (mytype == 1) {
+               location.href = "/user/info";
+           }
+           else
+               if (mytype == 2) {
+                   location.href = "/instructor/info";
+               }
+               else
+                   location.href = "/index/";
+       </script>
+
+    </body>
+</html>

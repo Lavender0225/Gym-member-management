@@ -1,0 +1,73 @@
+CREATE TABLE "gym_manage_course" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "name" varchar(30) NOT NULL,
+    "day" varchar(3) NOT NULL,
+    "time" varchar(20) NOT NULL,
+    "start_day" date NOT NULL,
+    "end_day" date NOT NULL,
+    "price" integer NOT NULL
+)
+;
+CREATE TABLE "gym_manage_member_course" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "member_name_id" integer NOT NULL REFERENCES "auth_user" ("id"),
+    "courses_id" integer NOT NULL REFERENCES "gym_manage_course" ("id")
+)
+;
+CREATE TABLE "gym_manage_instructor_course" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "instructor_name_id" integer NOT NULL REFERENCES "auth_user" ("id"),
+    "courses_id" integer NOT NULL REFERENCES "gym_manage_course" ("id")
+)
+;
+CREATE TABLE "gym_manage_cost_record" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "member_name_id" integer NOT NULL REFERENCES "auth_user" ("id"),
+    "course_id" integer NOT NULL REFERENCES "gym_manage_course" ("id"),
+    "balance" integer NOT NULL
+)
+;
+CREATE TABLE "gym_manage_member_balance" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "member_id" integer NOT NULL REFERENCES "auth_user" ("id"),
+    "balance" integer NOT NULL
+)
+;
+CREATE TABLE "gym_manage_member_instructor" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "member_id" integer NOT NULL REFERENCES "auth_user" ("id"),
+    "instructor" varchar(100) NOT NULL,
+    "day" varchar(3) NOT NULL,
+    "time" varchar(20) NOT NULL,
+    "start_day" date NOT NULL,
+    "end_day" date NOT NULL,
+    "acknowlage" integer NOT NULL
+)
+;
+CREATE TABLE "gym_manage_instructor_profile" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "instructor_id" integer NOT NULL REFERENCES "auth_user" ("id"),
+    "sex" varchar(6) NOT NULL,
+    "best" varchar(500) NOT NULL
+)
+;
+CREATE INDEX "gym_manage_member_course_56033663" ON "gym_manage_member_course" (
+"member_name_id");
+CREATE INDEX "gym_manage_member_course_cb003464" ON "gym_manage_member_course" (
+"courses_id");
+CREATE INDEX "gym_manage_instructor_course_759a4f60" ON "gym_manage_instructor_c
+ourse" ("instructor_name_id");
+CREATE INDEX "gym_manage_instructor_course_cb003464" ON "gym_manage_instructor_c
+ourse" ("courses_id");
+CREATE INDEX "gym_manage_cost_record_56033663" ON "gym_manage_cost_record" ("mem
+ber_name_id");
+CREATE INDEX "gym_manage_cost_record_6234103b" ON "gym_manage_cost_record" ("cou
+rse_id");
+CREATE INDEX "gym_manage_member_balance_b3c09425" ON "gym_manage_member_balance"
+ ("member_id");
+CREATE INDEX "gym_manage_member_instructor_b3c09425" ON "gym_manage_member_instr
+uctor" ("member_id");
+CREATE INDEX "gym_manage_instructor_profile_fdb8591a" ON "gym_manage_instructor_
+profile" ("instructor_id");
+
+COMMIT;
