@@ -98,7 +98,7 @@ STATICFILES_DIRS = (
    # ("forehead",os.path.join(STATIC_ROOT,'im/forehead')),
 )
 
-TEMPLATE_DIRS =(('F:/django-code/gym2/gym2/templates'),
+TEMPLATE_DIRS =((os.path.join(BASE_DIR,'templates')),
     # Put strings here, like "/home/html/django_templates"C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
